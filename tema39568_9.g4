@@ -8,32 +8,34 @@ instrucciones: instruccion
 
 instruccion: decision;
 
-decision: 'if' '(' condicion ')' '{' sentencia '}' ('else' '{' sentencia '}')?;
+decision: IF LPAREN condicion RPAREN LBRACE sentencia RBRACE (ELSE LBRACE sentencia RBRACE)?;
 
-sentencia: salida
-    | salida sentencia
-    | terminar
-    ;
+sentencia: (salida | terminar)+;
 
-salida: 'printf' '(' cadena ')' ';';
+salida: PRINTF LPAREN cadena RPAREN SIMBOLO;
 
-terminar: 'return' ';';
+terminar: RETURN SIMBOLO;
 
-condicion: '0'
-    | '1'
-    ;
+condicion: ZERO | ONE;
 
-cadena: '"' caracteres '"';
+cadena: DQUOTE caracteres DQUOTE;
 
-caracteres: caracter
-    | caracteres caracter
-    ;
+caracteres: (caracter)*;
 
-caracter: LETRA
-    | DIGITO
-    | SIMBOLO
-    ;
+caracter: LETRA | DIGITO | SIMBOLO;
 
+// Tokens
+IF: 'if';
+ELSE: 'else';
+PRINTF: 'printf';
+RETURN: 'return';
+LPAREN: '(';
+RPAREN: ')';
+LBRACE: '{';
+RBRACE: '}';
+ZERO: '0';
+ONE: '1';
+DQUOTE: '"';
 LETRA: [a-zA-Z];
 DIGITO: [0-9];
 SIMBOLO: '.' | ',' | '!' | '?' | ':' | ';' | '\'';
