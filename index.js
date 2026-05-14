@@ -69,6 +69,16 @@ async function main() {
 }
 
 function leerCadena() {
+    if (!process.stdin.isTTY) {
+        return new Promise((resolve, reject) => {
+            let input = '';
+            process.stdin.setEncoding('utf8');
+            process.stdin.on('data', chunk => input += chunk);
+            process.stdin.on('end', () => resolve(input));
+            process.stdin.on('error', reject);
+        });
+    }
+
     const rl = readline.createInterface({
         input: process.stdin,
         output: process.stdout
