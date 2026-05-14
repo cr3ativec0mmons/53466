@@ -1,0 +1,23 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      antlr4:
+        specifier: ^4.13.2
+        version: 4.13.2
+
+packages:
+
+  antlr4@4.13.2:
+    resolution: {integrity: sha512-QiVbZhyy4xAZ17UPEuG3YTOt8ZaoeOR1CvEAqrEsDBsOqINslaB147i9xqljZqoyf5S+EUlGStaj+t22LT9MOg==}
+    engines: {node: '>=16'}
+
+snapshots:
+
+  antlr4@4.13.2: {}
