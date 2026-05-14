@@ -40,7 +40,6 @@ $ npm start
 6. Se le pedirá insertar una cadena si es que no ha presentado alguna en un archivo ```input.js```. Se recomienda probar con los ejemplos presentado en la carpeta ```ejemplos```
 ## Ejemplo del programa en ejecución
 ![Captura de pantalla mostrando el programa en ejecución](./assets/prueba_ejecucion.png)
-![Árbol de la cadena mostrada](./assets/tema39568_9-tree.svg)
 ### Cadena usada para la muestra:
 ```bash
 if (1) {
