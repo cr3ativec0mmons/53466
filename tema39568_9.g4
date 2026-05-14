@@ -23,7 +23,7 @@ condicion: '0'
     | '1'
     ;
 
-cadena: ''\'' caracteres ''\'';
+cadena: '"' caracteres '"';
 
 caracteres: caracter
     | caracteres caracter
@@ -34,6 +34,7 @@ caracter: LETRA
     | SIMBOLO
     ;
 
-LETRA: [a-zA-Z]+;
+LETRA: [a-zA-Z];
 DIGITO: [0-9];
 SIMBOLO: '.' | ',' | '!' | '?' | ':' | ';' | '\'';
+WS: [ \t\r\n]+ -> skip;

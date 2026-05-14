@@ -51,7 +51,7 @@ async function main() {
     lexer = new tema39568_9Lexer(inputStream);
     let tokenStream = new CommonTokenStream(lexer);
     let parser = new tema39568_9Parser(tokenStream);
-    let tree = parser.prog();
+    let tree = parser.programa();
 
     // Verificar si se produjeron errores sintácticos
     if (parser.syntaxErrorsCount > 0) {

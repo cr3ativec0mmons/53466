@@ -1,8 +1,4 @@
-x = 2 + 3
-y = 3
-z = x + y
-z
-
-
-
-
+if (1) {
+    printf("Funciona!");
+    return;
+};
