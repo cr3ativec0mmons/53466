@@ -38,6 +38,9 @@ $ code .
 $ npm start
 ```
 6. Se le pedirá insertar una cadena si es que no ha presentado alguna en un archivo ```input.js```. Se recomienda probar con los ejemplos presentado en la carpeta ```ejemplos```
+```bash
+$  cat ejemplos/{ejemplo_a_usar}.txt | npm start
+```
 ## Ejemplo del programa en ejecución
 ![Captura de pantalla mostrando el programa en ejecución](./assets/prueba_ejecucion.png)
 ### Cadena usada para la muestra:
