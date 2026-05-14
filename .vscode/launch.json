@@ -6,7 +6,7 @@
     "type": "antlr-debug",
     "request": "launch",
     "input": "input.txt",
-    "grammar": "Calculator.g4",
+    "grammar": "tema39568_9.g4",
     "printParseTree": true,
     "visualParseTree": true
     }
