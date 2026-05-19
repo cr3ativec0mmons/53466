@@ -1,4 +1,7 @@
 if (0) {
     printf("prueba!") ;
     return ;
+} else {
+    printf("texto seleccionado") ;
+    return ;
 }
