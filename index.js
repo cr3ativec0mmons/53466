@@ -64,7 +64,22 @@ async function main() {
         /* Utilizar un visitor para visitar los nodos que me interesan del árbol 
          * e implementar la semántica que nos interesa.*/
         const visitor = new Customtema39568_9Visitor();
-        visitor.visit(tree);
+        const jsCode = visitor.visit(tree);
+
+        console.log("\nTraducción a JavaScript:");
+        console.log("--------------------------------------------------");
+        console.log(jsCode);
+        console.log("--------------------------------------------------");
+
+        console.log("\nSalida:");
+        console.log("--------------------------------------------------");
+        try {
+            const interpret = new Function(jsCode);
+            interpret();
+        } catch (e) {
+            console.error("Error durante la interpretación:", e);
+        }
+        console.log("--------------------------------------------------");
     }
 }
 

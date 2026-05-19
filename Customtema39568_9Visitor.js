@@ -1,49 +1,59 @@
 import tema39568_9Visitor from './generated/tema39568_9Visitor.js';
-import tema39568_9Parser from './generated/tema39568_9Parser.js';
 
 class Customtema39568_9Visitor extends tema39568_9Visitor {
     constructor() {
         super();
-        this.memory = {}; // Almacén de variables
     }
 
-    visitDecl(ctx) {
-        const varName = ctx.ID().getText();
-        if (ctx.expr()) {
-            this.memory[varName] = this.visit(ctx.expr());
+    visitPrograma(ctx) {
+        return this.visit(ctx.instrucciones());
+    }
+
+    visitInstrucciones(ctx) {
+        if (ctx.instrucciones()) {
+            return this.visit(ctx.instrucciones()) + '\n' + this.visit(ctx.instruccion());
         }
-        const val = this.memory[varName] !== undefined ? this.memory[varName] : 'undefined';
-        console.log(`Declaración: ${ctx.getChild(0).getText()} ${varName} = ${val};`);
+        return this.visit(ctx.instruccion());
     }
 
-    visitAssign(ctx) {
-        const varName = ctx.ID().getText();
-        this.memory[varName] = this.visit(ctx.expr());
-        console.log(`${varName} = ${this.memory[varName]};`);
+    visitInstruccion(ctx) {
+        return this.visit(ctx.decision());
     }
 
-    visitNumber(ctx) {
-        return Number(ctx.getText());
+    visitDecision(ctx) {
+        const cond = this.visit(ctx.condicion());
+        let js = `if (${cond}) {\n`;
+        js += this.visit(ctx.sentencia(0));
+        js += `}`;
+        if (ctx.ELSE()) {
+            js += ` else {\n`;
+            js += this.visit(ctx.sentencia(1));
+            js += `}`;
+        }
+        return js + "\n";
     }
 
-    visitId(ctx) {
-        return this.memory[ctx.getText()] || 0;
+    visitSentencia(ctx) {
+        let js = "";
+        for (let i = 0; i < ctx.children.length; i++) {
+            js += this.visit(ctx.children[i]);
+        }
+        return js;
     }
 
-    visitMulDiv(ctx) {
-        const left = this.visit(ctx.expr(0));
-        const right = this.visit(ctx.expr(1));
-        return ctx.op.type === tema39568_9Parser.STAR ? left * right : left / right;
+    visitSalida(ctx) {
+        let textoAImprimir = ctx.cadena().getText(); 
+        return `    console.log(${textoAImprimir});\n`;
     }
 
-    visitAddSub(ctx) {
-        const left = this.visit(ctx.expr(0));
-        const right = this.visit(ctx.expr(1));
-        return ctx.op.type === tema39568_9Parser.SUM ? left + right : left - right;
+    visitTerminar(ctx) {
+        return `    return;\n`;
     }
 
-    visitParens(ctx) {
-        return this.visit(ctx.expr());
+    visitCondicion(ctx) {
+        if (ctx.ZERO()) return "0";
+        if (ctx.ONE()) return "1";
+        return "";
     }
 }
 
